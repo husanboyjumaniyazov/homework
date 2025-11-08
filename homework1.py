@@ -1,8 +1,7 @@
 # 1capitalize()    Converts the first character to upper case.
 #                 Birinchi belgini katta harfga aylantiradi.
 
-# 2casefold()      Converts string into lower case.
-#                 Matnni kichik harflarga o‘zgartiradi.
+print("salom")
 # 3center()        Returns a centered string.
 #                 Matnni markazga joylashtiradi.
 # 4count()         Returns the number of times a specified value occurs in a string.
