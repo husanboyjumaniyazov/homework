@@ -1,0 +1,438 @@
+//1capitalize()    Converts the first character to upper case.  
+                Birinchi belgini katta harfga aylantiradi.
+1) 
+ism='XUSANBOY'
+familya='JUMANIYOZOV'
+ism_Sharif='XUSANBOY JUMANIYOZOV'
+print(ism_Sharif.capitalize())
+
+javob
+
+Xusanboy jumaniyozov
+
+2)
+ism_Sharif='XUSANBOY Jumaniyozov'
+print(ism_Sharif.capitalize())
+
+javob
+
+Xusanboy jumaniyozov
+
+3)ism_Sharif='1XUSANBOY Jumaniyozov'
+print(ism_Sharif.capitalize())
+
+javob
+1xusanboy jumaniyozov
+
+//2casefold()      Converts string into lower case.  
+                Matnni kichik harflarga o‘zgartiradi.
+1)
+ism_Sharif='XUSANBOY Jumaniyozov'
+print(ism_Sharif.casefold())
+
+javob
+
+xusanboy jumaniyozov
+
+2)
+ism_Sharif='baLiQlar OlaMi'
+print(ism_Sharif.casefold())
+
+javob
+baliqlar olami
+
+3)
+ism_Sharif='Ali 35 yoshda'
+print(ism_Sharif.casefold())
+
+javob
+ali 35 yoshda
+
+
+//3center()        Returns a centered string.  
+                Matnni markazga joylashtiradi.
+
+1)
+txt='Salom '
+print(txt.center(10))
+
+javob
+  Salom   
+
+2)
+txt='Salom '
+print(txt.center(35))
+
+javob
+               Salom               
+
+3)
+txt='Salom '
+print(txt.center(56))
+
+javob
+                         Salom                      
+
+
+//4count()         Returns the number of times a specified value occurs in a string.  
+                Belgilangan qiymat nechta marta uchraganini qaytaradi.
+1)
+matn="salom salom salom salom salom dunyo"
+print(matn.count("salom"))
+
+javob 
+5
+2)
+matn="python!!!!!!!!!!!!!!1"
+print(matn.count("!"))
+
+javob
+14
+
+3)
+matn="olamni bosadi yaxshlik!"
+print(matn.count("a"))
+
+javob 
+3
+
+//5encode()        Returns an encoded version of the string.  
+                Matnning kodlangan (masalan, UTF-8) shaklini qaytaradi.
+
+//6endswith()      Returns true if the string ends with the specified value.  
+                Matn belgilangan qiymat bilan tugasa `True` qaytaradi.
+
+1)
+txt = "Dunyo go'zal!"
+print(txt.endswith("go'zal!"))
+ javob True
+
+2)
+txt = "Python dasturlash tili"
+print(txt.endswith("tili"))
+
+javob True
+
+3) 
+txt = "Bugun ob-havo yaxshi"
+print(txt.endswith("yomon"))
+
+ javob False
+
+//7expandtabs()    Sets the tab size of the string.  
+                Tab belgilarini bo‘sh joylar bilan almashtiradi.
+1)
+txt = "Salom\tDunyo"
+print(txt.expandtabs())
+
+javob
+Salom   Dunyo
+
+2)
+txt = "1\t2\t3"
+print(txt.expandtabs(4))
+
+javob
+1   2   3
+
+3)
+txt = "Python\tDasturlash\tTili"
+print(txt.expandtabs(2))
+
+javoi
+
+//8find()          Searches the string for a specified value and returns the position of where it was found.  
+                Matnda qiymatni qidirib, birinchi uchragan joyning indeksini qaytaradi
+
+1)
+txt = "Salom dunyo!"
+print(txt.find("dunyo"))
+
+Javob:
+6
+
+2)
+txt = "Python dasturlash tili"
+print(txt.find("da"))
+
+Javob:
+7
+
+
+//9 format()
+Matnga belgilangan qiymatlarni joylashtiradi.
+
+1)
+txt = "Mening ismim {} va yoshim {}."
+print(txt.format("Ali", 25))
+
+
+Javob:
+
+Mening ismim Ali va yoshim 25.
+
+2)
+txt = "Bugun {kun} va ob-havo {ob_havo}."
+print(txt.format(kun="dushanba", ob_havo="yomg‘irli"))
+
+Javob:
+
+Bugun dushanba va ob-havo yomg‘irli.
+
+
+//10 format_map()
+Lug‘atdagi qiymatlar yordamida matnni formatlaydi.
+
+1)
+txt = "Ism: {ism}, Yoshi: {yosh}"
+data = {"ism": "Ali", "yosh": 30}
+print(txt.format_map(data))
+
+Javob:
+
+Ism: Ali, Yoshi: 30
+
+2)
+txt = "Mahsulot: {nomi}, Narxi: {narxi} so'm"
+data = {"nomi": "Olma", "narxi": 5000}
+print(txt.format_map(data))
+
+Javob:
+
+Mahsulot: Olma, Narxi: 5000 so'm
+
+3)
+txt = "Ism: {ism}, Familiya: {familiya}"
+data = {"ism": "Nilufar", "familiya": "Karimova"}
+print(txt.format_map(data))
+
+Javob:
+
+Ism: Nilufar, Familiya: Karimova
+
+//11index()
+Qiymatni topib, indeksini qaytaradi. Topilmasa xatolik beradi.
+
+1)
+txt = "Salom dunyo!"
+print(txt.index("dunyo"))
+
+Javob:
+
+6
+
+2)
+txt = "Python dasturlash"
+print(txt.index("das"))
+
+Javob:
+
+7
+
+3)
+txt = "Matn ichida yo‘q"
+print(txt.index("hello"))
+
+Javob:
+
+ValueError: substring not found
+
+//12 isalnum()
+Matndagi barcha belgilar harf yoki raqam bo‘lsa True qaytaradi.
+
+1)
+txt = "Python3"
+print(txt.isalnum())
+
+
+Javob:
+
+True
+
+2)
+txt = "Salom123"
+print(txt.isalnum())
+
+Javob:
+
+True
+
+3)
+txt = "Salom Dunyo!"
+print(txt.isalnum())
+
+Javob:
+
+False 
+
+//13 isalpha()
+Matndagi barcha belgilar harflar bo‘lsa True qaytaradi.
+
+1)
+txt = "Salom"
+print(txt.isalpha())
+
+Javob:
+
+True
+
+2)
+txt = "SalomDunyo"
+print(txt.isalpha())
+
+Javob:
+
+True
+
+3)
+txt = "Salom123"
+print(txt.isalpha())
+
+Javob:
+
+False
+
+//14 isascii()
+Matndagi barcha belgilar ASCII bo‘lsa True qaytaradi.
+
+1)
+txt = "Hello123"
+print(txt.isascii())
+
+Javob:
+
+True
+
+2)
+txt = "Salom"
+print(txt.isascii())
+
+Javob:
+
+False   
+
+3)
+txt = "Python!"
+print(txt.isascii())
+
+Javob:
+
+True
+
+//15 isdecimal()
+Matndagi barcha belgilar o‘nlik raqamlar bo‘lsa True qaytaradi.
+
+1)
+txt = "12345"
+print(txt.isdecimal())
+
+Javob:
+
+True
+
+2)
+txt = "12345.6"
+print(txt.isdecimal())
+
+Javob:
+
+False   
+
+3)
+txt = "٠١٢٣٤"  # Arab raqamlari
+print(txt.isdecimal())
+
+Javob:
+
+True
+
+
+//16isdigit()       Returns True if all characters in the string are digits.  
+                Matndagi barcha belgilar raqam bo‘lsa `True` qaytaradi.
+
+//17isidentifier()  Returns True if the string is an identifier.  
+                Agar matn Python identifikatori bo‘la olsa `True` qaytaradi.
+
+//18islower()       Returns True if all characters in the string are lower case.  
+                Matndagi barcha harflar kichik bo‘lsa `True` qaytaradi.
+
+//19isnumeric()     Returns True if all characters in the string are numeric.  
+                Matndagi barcha belgilar raqam bo‘lsa `True` qaytaradi.
+
+//20isprintable()   Returns True if all characters in the string are printable.  
+                Matndagi barcha belgilar chop etiladigan bo‘lsa `True`.
+
+//21isspace()       Returns True if all characters in the string are whitespaces.  
+                Matn faqat bo‘sh joy belgilaridan iborat bo‘lsa `True`.
+
+//22istitle()       Returns True if the string follows the rules of a title.  
+                Har bir so‘z katta harf bilan boshlansa `True` qaytaradi.
+
+//23isupper()       Returns True if all characters in the string are upper case.  
+                Matndagi barcha harflar katta bo‘lsa `True` qaytaradi.
+
+//24join()          Converts the elements of an iterable into a string.  
+                Takrorlanuvchi obyekt elementlarini bitta matnga birlashtiradi.
+
+//25ljust()         Returns a left justified version of the string.  
+                Matnni chapga tekislab, o‘ngini bo‘sh joy bilan to‘ldiradi.
+
+//26lower()         Converts a string into lower case.  
+                Matnni kichik harflarga o‘zgartiradi.
+
+//27lstrip()        Returns a left trim version of the string.  
+                Matn boshidagi bo‘sh joylarni olib tashlaydi.
+
+//28maketrans()     Returns a translation table to be used in translations.  
+                Tarjima qilish uchun jadval (translation table) yaratadi.
+
+//29partition()     Returns a tuple where the string is parted into three parts.  
+                Matnni 3 qismga ajratib, `tuple` qaytaradi.
+
+//30replace()       Returns a string where a specified value is replaced with another value.  
+                Belgilangan qiymatni boshqasiga almashtiradi.
+
+//31rfind()         Searches the string for a specified value and returns the last position.  
+                Qiymatni oxirgi marta uchragan joydan boshlab qidiradi.
+
+//32rindex()        Searches the string for a specified value and returns the last position.  
+                `rfind()` kabi, lekin topilmasa xatolik beradi.
+
+//33rjust()         Returns a right justified version of the string.  
+                Matnni o‘ngga tekislab, chapini bo‘sh joy bilan to‘ldiradi.
+
+//34rpartition()    Returns a tuple where the string is parted into three parts.  
+                Matnni oxirgi ajratuvchi bo‘yicha 3 qismga bo‘ladi.
+
+//35rsplit()        Splits the string at the specified separator, starting from the right.  
+                Matnni o‘ng tomondan ajratadi va ro‘yxatga ajratadi.
+
+//36rstrip()        Returns a right trim version of the string.  
+                Matnning oxiridagi bo‘sh joylarni olib tashlaydi.
+
+//37split()         Splits the string at the specified separator.  
+                Matnni bo‘lib, ro‘yxatga ajratadi.
+
+//38splitlines()    Splits the string at line breaks and returns a list.  
+                Matnni qator bo‘yicha bo‘lib, ro‘yxatga ajratadi.
+
+//39startswith()    Returns true if the string starts with the specified value.  
+                Matn belgilangan qiymat bilan boshlansa `True`.
+
+//40strip()         Returns a trimmed version of the string.  
+                Matnning boshi va oxiridagi bo‘sh joylarni olib tashlaydi.
+
+//41swapcase()      Swaps cases, lower case becomes upper case and vice versa.  
+                Katta harflarni kichikka, kichik harflarni kattaga aylantiradi.
+
+//42title()         Converts the first character of each word to upper case.  
+                Har bir so‘zning birinchi harfini katta qiladi.
+
+//43translate()     Returns a translated string.  
+                Belgilarni tarjima jadvali asosida almashtirib beradi.
+
+//44upper()         Converts a string into upper case.  
+                Matnni katta harflarga o‘zgartiradi.
+
+//45zfill()         Fills the string with a specified number of 0 values at the beginning.  
+                Matn boshiga `0` qo‘shib, belgilangan uzunlikka keltiradi.

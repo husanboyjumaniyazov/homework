@@ -49,12 +49,10 @@ davlat = input("Davlat nomini kiriting: ").lower()  # Katta-kichik farqini yo'qo
 if davlat in davlatlar:
     info = davlatlar[davlat]
     # Birinchi harfini katta qilib chiqaramiz
-    nom = davlat.capitalize() \
-    if davlat != "aqsh" else "AQSH"
+    nom = davlat.capitalize() if davlat != "aqsh" else "AQSH"
     print(f"\n{nom}ning poytaxti {info['poytaxt']}")
     print(f"Hududi: {info['hududi']}")
     print(f"Aholisi: {info['aholisi']}")
     print(f"Pul birligi: {info['pul_birligi']}")
-else:vb
+else:
     print("Bizda bu davlat haqida ma'lumot mavjud emas.")
-
