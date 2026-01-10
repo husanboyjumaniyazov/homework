@@ -1,44 +1,97 @@
-# 1. Foydalanuvchilar ro'yxati
-foydalanuvchilar = ["umar", "ozod", "dilshod", "javlon", "aziz"]
+import sqlite3
+from contextlib import closing
 
-login = input("Yangi login tanlang: ").lower()
+def get_connection(database_path):
+    return closing(sqlite3.connect(database_path))
 
-if login in foydalanuvchilar:
-    print("Login band, yangi login tanlang!")
-else:
-    print("Xush kelibsiz!")
+def create_employee(database_path, first_name, last_name):
+    with get_connection(database_path) as connection:
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO employees (first_name, last_name) VALUES (?, ?)", (first_name, last_name))
+        connection.commit()
+        return cursor.lastrowid
 
-# 2. Foydalanuvchidan son kiritishni so'rash va 2 dan 10 gacha bo'linishini tekshirish
-son = int(input("\nIstalgan butun son kiriting: "))
+def get_employee(database_path, employee_id):
+    with get_connection(database_path) as connection:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM employees WHERE id=?", (employee_id,))
+        return cursor.fetchone()
 
-for i in range(2, 11):
-    if son % i == 0:
-        print(f"{son} soni {i} ga qoldiqsiz bo'linadi")
 
-# 3. Juft son tekshirish
-juft_son = int(input("\nJuft son kiriting: "))
-if juft_son % 2 == 0:
-    print("Rahmat!")
-else:
-    print("Bu son juft emas.")
+def update_employee(database_path, employee_id, name=None, bio=None):
+    with get_connection(database_path) as connection:
+        cursor = connection.cursor()
+        if name:
+            cursor.execute("UPDATE employees SET name=? WHERE id=?", (name, employee_id))
+        if bio:
+            cursor.execute("UPDATE employees SET bio=? WHERE id=?", (bio, employee_id))
+        connection.commit()
 
-# 4. Yoshga qarab muzeyga kirish narhini aniqlash
-yosh = int(input("\nYoshingizni kiriting: "))
+def delete_employee(database_path, employee_id):
+    with get_connection(database_path) as connection:
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM employees WHERE id=?", (employee_id,))
+        connection.commit()
 
-if yosh < 4 or yosh > 60:
-    print("Sizga kirish bepul!")
-elif yosh < 18:
-    print("Chipta narxi 10 000 so'm")
-else:
-    print("Chipta narxi 20 000 so'm")
 
-# 5. Ikkita sonni solishtirish
-birinchi = float(input("\nBirinchi sonni kiriting: "))
-ikkinchi = float(input("Ikkinchi sonni kiriting: "))
+import sqlite3
+from contextlib import closing
 
-if birinchi < ikkinchi:
-    print(f"{birinchi} < {ikkinchi}")
-elif birinchi > ikkinchi:
-    print(f"{birinchi} > {ikkinchi}")
-else:
-    print(f"{birinchi} = {ikkinchi}")
+def get_connection(database_path):
+    return sqlite3.connect(database_path)
+
+def create_employee_table(database_path):
+    """Baza sxemaga mos yaratiladi, agar mavjud bo'lmasa"""
+    with get_connection(database_path) as conn:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS employees (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                first_name TEXT,
+                last_name TEXT,
+                salary REAL,
+                manager_id INTEGER,
+                department_id INTEGER
+                -- Boshqa ustunlar ham shu yerda bo'ladi (email, phone_number...)
+            )
+        """)
+
+def create_employee(database_path, first_name, last_name, salary=None):
+    with get_connection(database_path) as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute(
+                "INSERT INTO employees (first_name, last_name, salary) VALUES (?, ?, ?)",
+                (first_name, last_name, salary)
+            )
+
+            return cursor.lastrowid
+
+def get_employee(database_path, employee_id):
+    with get_connection(database_path) as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute("SELECT * FROM employees WHERE id=?", (employee_id,))
+            return cursor.fetchone()
+
+def update_employee(database_path, employee_id, first_name=None, last_name=None, salary=None):
+    with get_connection(database_path) as conn:
+        with closing(conn.cursor()) as cursor:
+
+            if first_name:
+                cursor.execute("UPDATE employees SET first_name=? WHERE id=?", (first_name, employee_id))
+            if last_name:
+                cursor.execute("UPDATE employees SET last_name=? WHERE id=?", (last_name, employee_id))
+            if salary is not None:
+                cursor.execute("UPDATE employees SET salary=? WHERE id=?", (salary, employee_id))
+
+def delete_employee(database_path, employee_id):
+    with get_connection(database_path) as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute("DELETE FROM employees WHERE id=?", (employee_id,))
+
+
+db_file = 'hr_database.db'
+create_employee_table(db_file)
+new_emp_id = create_employee(db_file, "Jalolov", "Doston", 70000,)
+
+print(f"Yangi xodim IDsi: {new_emp_id}")
+update_employee(db_file, new_emp_id, salary=65000)
+print(f"Yangilangan ma'lumot: {get_employee(db_file, new_emp_id)}")
